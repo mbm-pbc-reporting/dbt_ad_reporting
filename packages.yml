@@ -5,11 +5,11 @@ packages:
   - git: "https://github.com/mbm-pbc-reporting/dbt_microsoft_ads.git" 
     revision: "main"
     
-  - git: "https://github.com/mbm-pbc-reporting/dbt_pinterest.git" 
-    revision: "main"
-    
   - git: "https://github.com/mbm-pbc-reporting/dbt_facebook_ads.git" 
     revision: "main"
+
+  - package: fivetran/pinterest
+    version: [">=0.10.0", "<0.11.0"]
     
   - package: fivetran/amazon_ads
     version: [">=0.3.0", "<0.4.0"]
