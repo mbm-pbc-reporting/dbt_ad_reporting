@@ -1,24 +1,24 @@
 packages:
+  - git: "https://github.com/mbm-pbc-reporting/dbt_google_ads.git"
+    revision: "main"
+    
+  - git: "https://github.com/mbm-pbc-reporting/dbt_microsoft_ads.git" 
+    revision: "main"
+    
+  - git: "https://github.com/mbm-pbc-reporting/dbt_pinterest.git" 
+    revision: "main"
+    
+  - git: "https://github.com/mbm-pbc-reporting/dbt_facebook_ads.git" 
+    revision: "main"
+    
   - package: fivetran/amazon_ads
     version: [">=0.3.0", "<0.4.0"]
 
   - package: fivetran/apple_search_ads
     version: [">=0.3.0", "<0.4.0"]
 
-  - package: fivetran/facebook_ads
-    version: [">=0.7.0", "<0.8.0"]
-
-  - package: fivetran/google_ads
-    version: [">=0.10.0", "<0.11.0"]
-
   - package: fivetran/linkedin
     version: [">=0.8.0", "<0.9.0"]
-
-  - package: fivetran/microsoft_ads
-    version: [">=0.7.0", "<0.8.0"]
-
-  - package: fivetran/pinterest
-    version: [">=0.10.0", "<0.11.0"]
 
   - package: fivetran/reddit_ads
     version: [">=0.2.0", "<0.3.0"]
