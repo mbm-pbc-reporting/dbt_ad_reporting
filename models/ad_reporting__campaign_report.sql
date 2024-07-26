@@ -1,5 +1,12 @@
 {% set enabled_packages = get_enabled_packages() %}
-{{ config(enabled=is_enabled(enabled_packages)) }}
+{{ config(enabled=is_enabled(enabled_packages),
+    unique_key = ['source_relation','platform','date_day','campaign_id','account_id'],
+    partition_by={
+      "field": "date_day",
+      "data_type": "date",
+      "granularity": "day"
+    }
+    ) }}
 
 with base as (
 
