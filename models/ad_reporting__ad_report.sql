@@ -38,5 +38,30 @@ aggregated as (
     {{ dbt_utils.group_by(11) }}
 )
 
+,all_data as(
 select *
 from aggregated
+
+union all
+
+SELECT 
+source_relation
+,date_day
+,platform
+,account_id
+,account_name
+,campaign_id
+,campaign_name
+,ad_group_id
+,ad_group_name
+,ad_id
+,ad_name
+,clicks
+,impressions
+,spend
+,conversions    
+from 
+{{ ref('ttd_ads__custom_ad_report') }} 
+)
+select *
+from all_data
