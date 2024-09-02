@@ -35,5 +35,33 @@ aggregated as (
     {{ dbt_utils.group_by(9) }}
 )
 
+,
+all_data as(
 select *
 from aggregated
+
+union all
+
+SELECT 
+source_relation
+,date_day
+,platform
+,account_id
+,account_name
+,campaign_id
+,campaign_name
+,ad_group_id
+,ad_group_name
+,clicks
+,impressions
+,spend
+,conversions    
+
+from 
+{{ ref('ttd_ads__custom_ad_group_report') }}
+--`pbc-reporting-dev.mother_ny_pbc_tradedesk_summary_dev.ttd_ads__custom_ad_group_report`
+)
+
+select *
+from all_data
+
