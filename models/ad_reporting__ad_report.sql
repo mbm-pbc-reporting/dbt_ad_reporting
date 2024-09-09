@@ -52,7 +52,7 @@ aggregated as (
    -- {{ref('facebook_ads__ad_report')}}
     `pbc-reporting-dev.mother_ny_pbc_facebookads_summary_dev.facebook_ads__ad_report` 
     where targeting_publisher_platforms like '%instagram%'
-    ),
+    )
 
 ,all_data as(
 select *
