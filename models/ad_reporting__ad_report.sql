@@ -43,7 +43,16 @@ aggregated as (
   FROM
     {{ref('google_ads__ad_report')}}
    -- `pbc-reporting-dev.mother_ny_pbc_googleads_summary_dev.google_ads__ad_report`
-  WHERE lower(ad_type) like '%video%' )
+  WHERE lower(ad_type) like '%video%' ),
+
+  instagram_cte AS(
+  SELECT
+    *
+  FROM
+   -- {{ref('facebook_ads__ad_report')}}
+    `pbc-reporting-dev.mother_ny_pbc_facebookads_summary_dev.facebook_ads__ad_report` 
+    where targeting_publisher_platforms like '%instagram%'
+    ),
 
 ,all_data as(
 select *
@@ -91,6 +100,28 @@ union all
   FROM
     youtube_cte
   GROUP BY  1,2,3,4,5,6,7,8,9,10,11    
+
+ UNION ALL
+    
+  SELECT
+    source_relation,
+    date_day,
+    'instagram_ads' AS platform,
+    cast(account_id as string),
+    account_name,
+    cast(campaign_id as string),
+    campaign_name,
+    CAST(ad_set_id AS string) AS ad_group_id,
+    ad_set_name AS ad_group_name,
+    cast(ad_id as string),
+    ad_name,
+    SUM(clicks) AS clicks,
+    SUM(impressions) AS impressions,
+    SUM(spend) AS spend,
+    SUM(conversions) AS conversions,
+  FROM
+    instagram_cte
+  GROUP BY  1,2,3,4,5,6,7,8,9,10,11 
 )
 select *
 from all_data
