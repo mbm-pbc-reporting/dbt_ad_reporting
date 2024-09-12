@@ -98,7 +98,7 @@ source_relation
 ,sum(spend) as spend
 ,sum(conversions) as conversions    
 from   
-    {{rf('performance_max_ads__ad_report')}}
+    {{ref('performance_max_ads__ad_report')}}
 --`pbc-reporting-dev`.`mother_ny_pbc_performance_max_summary_dev`.`performance_max_ads__ad_report` 
 group by 1,2,3,4,5,6,7,8,9
    
