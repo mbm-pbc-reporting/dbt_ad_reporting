@@ -42,7 +42,37 @@ aggregated as (
 
     from base
     {{ dbt_utils.group_by(17) }}
-)
-
+),
+    
+all_data as ( 
 select *
 from aggregated
+
+union all
+
+select 
+source_relation,
+date_day,
+'youtube' as platform,
+cast(account_id as string),
+account_name,
+cast(campaign_id as string),
+campaign_name,
+cast(ad_group_id as string),
+ad_group_name,
+base_url,
+url_host,
+url_path,
+utm_source,
+utm_medium,
+utm_campaign,
+utm_content,
+utm_term,
+clicks,
+impressions,
+spend,
+conversions
+
+from {{ref('youtube_ads__url_report')}})
+
+select * from all_data
