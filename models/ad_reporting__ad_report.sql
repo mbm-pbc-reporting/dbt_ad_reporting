@@ -36,23 +36,7 @@ aggregated as (
 
     from base
     {{ dbt_utils.group_by(11) }}
-),
- youtube_cte AS (
-  SELECT
-    *
-  FROM
-    {{ref('google_ads__ad_report')}}
-   -- `pbc-reporting-dev.mother_ny_pbc_googleads_summary_dev.google_ads__ad_report`
-  WHERE lower(ad_type) like '%video%' ),
-
-  instagram_cte AS(
-  SELECT
-    *
-  FROM
-   -- {{ref('facebook_ads__ad_report')}}
-    `pbc-reporting-dev.mother_ny_pbc_facebookads_summary_dev.facebook_ads__ad_report` 
-    where targeting_publisher_platforms like '%instagram%'
-    )
+)
 
 ,all_data as(
 select *
@@ -79,49 +63,49 @@ source_relation
 from 
 {{ ref('ttd_ads__custom_ad_report') }} 
 
+union all    
+    
+SELECT 
+source_relation
+,date_day
+,'youtube' as platform
+,cast(account_id as string)
+,account_name
+,cast(campaign_id as string)
+,campaign_name
+,cast(ad_group_id as string)
+,ad_group_name
+,cast(ad_id as string)
+,ad_name
+,clicks
+,impressions
+,spend
+,conversions    
+from 
+`pbc-reporting-dev`.`mother_ny_pbc_youtube_summary_dev`.`youtube_ads__ad_report` 
+
 union all
 
-  SELECT
-    source_relation,
-    date_day,
-    'youtube' AS platform,
-    cast(account_id as string),
-    account_name,
-    cast(campaign_id as string),
-    campaign_name,
-    cast(ad_group_id as string),
-    ad_group_name,
-    cast(ad_id as string),
-    ad_name,
-    SUM(clicks) AS clicks,
-    SUM(impressions) AS impressions,
-    SUM(spend) AS spend,
-    SUM(conversions) AS conversions,
-  FROM
-    youtube_cte
-  GROUP BY  1,2,3,4,5,6,7,8,9,10,11    
+SELECT 
+source_relation
+,date_day
+,'performance_max' as platform
+,cast(account_id as string)
+,account_name
+,cast(campaign_id as string)
+,campaign_name
+,cast(ad_group_id as string)
+,ad_group_name
+,cast(ad_id as string)
+,ad_name
+,clicks
+,impressions
+,spend
+,conversions    
+from 
+`pbc-reporting-dev`.`mother_ny_pbc_performance_max_summary_dev`.`performance_max_ads__ad_report` 
 
- UNION ALL
-    
-  SELECT
-    source_relation,
-    date_day,
-    'instagram_ads' AS platform,
-    cast(account_id as string),
-    account_name,
-    cast(campaign_id as string),
-    campaign_name,
-    CAST(ad_set_id AS string) AS ad_group_id,
-    ad_set_name AS ad_group_name,
-    cast(ad_id as string),
-    ad_name,
-    SUM(clicks) AS clicks,
-    SUM(impressions) AS impressions,
-    SUM(spend) AS spend,
-    SUM(conversions) AS conversions,
-  FROM
-    instagram_cte
-  GROUP BY  1,2,3,4,5,6,7,8,9,10,11 
+
 )
 select *
 from all_data
