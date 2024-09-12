@@ -71,7 +71,7 @@ source_relation
 from 
 --`pbc-reporting-dev`.`mother_ny_pbc_youtube_summary_dev`.`youtube_ads__ad_report` 
     {{ref('youtube_ads__ad_report')}}
-group by 1,2,3,4,5,6,7,
+group by 1,2,3,4,5,6,7
 
 union all
 
