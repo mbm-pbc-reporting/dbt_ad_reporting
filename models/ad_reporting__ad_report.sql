@@ -82,7 +82,8 @@ source_relation
 ,spend
 ,conversions    
 from 
-`pbc-reporting-dev`.`mother_ny_pbc_youtube_summary_dev`.`youtube_ads__ad_report` 
+-- `pbc-reporting-dev`.`mother_ny_pbc_youtube_summary_dev`.`youtube_ads__ad_report` 
+    {{ref('youtube_ads__ad_report'}}
 
 union all
 
@@ -103,7 +104,8 @@ source_relation
 ,spend
 ,conversions    
 from 
-`pbc-reporting-dev`.`mother_ny_pbc_performance_max_summary_dev`.`performance_max_ads__ad_report` 
+--`pbc-reporting-dev`.`mother_ny_pbc_performance_max_summary_dev`.`performance_max_ads__ad_report` 
+    {{ref('performance_max_ads__ad_report'}}
 
 
 )
