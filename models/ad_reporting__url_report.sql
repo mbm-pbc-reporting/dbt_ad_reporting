@@ -42,7 +42,7 @@ aggregated as (
 
     from base
     {{ dbt_utils.group_by(17) }}
-),
+)
     
 select *
 from aggregated
