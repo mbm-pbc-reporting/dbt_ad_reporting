@@ -1,12 +1,12 @@
 packages:
   - git: "https://github.com/mbm-pbc-reporting/dbt_google_ads.git"
-    revision: "main"
+    revision: "production"
     
   - git: "https://github.com/mbm-pbc-reporting/dbt_microsoft_ads.git" 
-    revision: "main"
+    revision: "production"
     
   - git: "https://github.com/mbm-pbc-reporting/dbt_facebook_ads.git" 
-    revision: "main"
+    revision: "production"
 
   - package: calogica/dbt_date
     version: [">=0.9.0", "<1.0.0"]
