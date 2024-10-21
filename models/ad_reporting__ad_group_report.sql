@@ -58,7 +58,7 @@ source_relation
 ,conversions    
 
 from 
-{{ ref('ttd_ads__custom_ad_group_report') }}
+{{ ref('ttd_ads__custom_ad_group_summary_report') }}
 --`pbc-reporting-dev.mother_ny_pbc_tradedesk_summary_dev.ttd_ads__custom_ad_group_report`
 union all    
     
@@ -78,7 +78,7 @@ source_relation
 ,sum(conversions) as conversions    
 from 
 --`pbc-reporting-dev`.`mother_ny_pbc_youtube_summary_dev`.`youtube_ads__ad_report` 
-    {{ref('youtube_ads__ad_report')}}
+    {{ref('youtube_ads__custom_ad_summary_report')}}
 group by 1,2,3,4,5,6,7,8,9
 
 union all
@@ -98,7 +98,7 @@ source_relation
 ,sum(spend) as spend
 ,sum(conversions) as conversions    
 from   
-    {{ref('performance_max_ads__ad_report')}}
+    {{ref('performance_max_ads__custom_ad_summary_report')}}
 --`pbc-reporting-dev`.`mother_ny_pbc_performance_max_summary_dev`.`performance_max_ads__ad_report` 
 group by 1,2,3,4,5,6,7,8,9
    
