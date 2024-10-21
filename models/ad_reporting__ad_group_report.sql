@@ -77,8 +77,8 @@ source_relation
 ,sum(spend) as spend
 ,sum(conversions) as conversions    
 from 
---`pbc-reporting-dev`.`mother_ny_pbc_youtube_summary_dev`.`youtube_ads__ad_report` 
-    {{ref('youtube_ads__ad_report')}}
+--`pbc-reporting-prod`.`mother_ny_pbc_youtube_summary_prod`.`youtube_ads__custom_ad_summary_report` 
+    {{ref('youtube_ads__custom_ad_summary_report')}}
 group by 1,2,3,4,5,6,7,8,9
 
 union all
@@ -98,8 +98,8 @@ source_relation
 ,sum(spend) as spend
 ,sum(conversions) as conversions    
 from   
-    {{ref('performance_max_ads__ad_report')}}
---`pbc-reporting-dev`.`mother_ny_pbc_performance_max_summary_dev`.`performance_max_ads__ad_report` 
+    {{ref('performance_max_ads__custom_ad_summary_report')}}
+--`pbc-reporting-prod`.`mother_ny_pbc_performance_max_summary_prod`.`performance_max_ads__custom_ad_summary_report` 
 group by 1,2,3,4,5,6,7,8,9
    
 )
