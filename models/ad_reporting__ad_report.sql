@@ -61,7 +61,8 @@ source_relation
 ,spend
 ,conversions    
 from 
-{{ ref('ttd_ads__custom_ad_summary_report') }} 
+{{ ref('ttd_ads__custom_ad_group_summary_report') }} 
+    --`pbc-reporting-prod.mother_ny_pbc_tradedesk_summary_prod.ttd_ads__custom_ad_group_summary_report`
 
 union all    
     
