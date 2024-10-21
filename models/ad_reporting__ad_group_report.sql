@@ -77,7 +77,7 @@ source_relation
 ,sum(spend) as spend
 ,sum(conversions) as conversions    
 from 
---`pbc-reporting-dev`.`mother_ny_pbc_youtube_summary_dev`.`youtube_ads__ad_report` 
+--`pbc-reporting-dev`.`mother_ny_pbc_youtube_summary_dev`.`youtube_ads__custom_ad_summary_report` 
     {{ref('youtube_ads__custom_ad_summary_report')}}
 group by 1,2,3,4,5,6,7,8,9
 
