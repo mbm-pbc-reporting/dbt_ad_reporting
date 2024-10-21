@@ -61,7 +61,7 @@ source_relation
 ,spend
 ,conversions    
 from 
-{{ ref('ttd_ads__custom_ad_report') }} 
+{{ ref('ttd_ads__custom_ad_summary_report') }} 
 
 union all    
     
